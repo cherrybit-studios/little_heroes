@@ -16,3 +16,4 @@ jobs:
         with:
           workingDir: game 
           webRenderer: canvaskit
+          baseHref: /little_heroes/
