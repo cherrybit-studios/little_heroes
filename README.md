@@ -13,4 +13,4 @@ game, and also make use of our other project [Nes UI](https://github.com/erickza
 You can check the game at https://cherrybit.studio/little_heroes.
 
 For now the game is super simple and includes only a party editor menu, with more
-features comming out as the asset pack has progress.
+features coming out as the asset pack has progress.
