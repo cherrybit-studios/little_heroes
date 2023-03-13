@@ -15,14 +15,19 @@ dependencies:
   flutter_bloc: ^8.1.2
   flutter_localizations:
     sdk: flutter
+  hive: ^2.2.3
   intl: ^0.17.0
+  json_annotation: ^4.8.0
   nes_ui: ^0.3.0
   provider: ^6.0.5
+  uuid: ^3.0.7
 
 dev_dependencies:
   bloc_test: ^9.1.1
+  build_runner: ^2.3.3
   flutter_test:
     sdk: flutter
+  json_serializable: ^6.6.1
   mocktail: ^0.3.0
   very_good_analysis: ^4.0.0
 

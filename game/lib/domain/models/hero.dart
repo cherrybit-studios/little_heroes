@@ -1,4 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'hero.g.dart';
 
 enum Body {
   human1,
@@ -36,6 +39,7 @@ enum Shield {
   kite,
 }
 
+@JsonSerializable()
 class Hero extends Equatable {
   const Hero({
     required this.name,
@@ -44,6 +48,8 @@ class Hero extends Equatable {
     required this.weapon,
     required this.shield,
   });
+
+  factory Hero.fromJson(Map<String, dynamic> json) => _$HeroFromJson(json);
 
   final String name;
   final Body body;
@@ -100,6 +106,8 @@ class Hero extends Equatable {
       shield: shield,
     );
   }
+
+  Map<String, dynamic> toJson() => _$HeroToJson(this);
 
   @override
   List<Object?> get props => [name, body, outfit, weapon, outfit, shield];
