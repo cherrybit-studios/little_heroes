@@ -2,8 +2,10 @@ import 'package:flame/widgets.dart';
 import 'package:flutter/material.dart' hide Hero;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:little_heroes/assets.dart';
+import 'package:little_heroes/domain/domain.dart';
 import 'package:little_heroes/l10n/l10n.dart';
 import 'package:little_heroes/party_editor/party_editor.dart';
+import 'package:little_heroes/widgets/widgets.dart';
 import 'package:nes_ui/nes_ui.dart';
 
 class PartyEditorView extends StatelessWidget {
@@ -11,25 +13,19 @@ class PartyEditorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: NesContainer(
-          width: 800,
-          height: 600,
-          child: Row(
-            children: const [
-              Expanded(
-                flex: 6,
-                child: _CharacterView(),
-              ),
-              SizedBox(width: 16),
-              Expanded(
-                flex: 4,
-                child: _SelectionView(),
-              ),
-            ],
+    return GameScaffold(
+      body: Row(
+        children: const [
+          Expanded(
+            flex: 6,
+            child: _CharacterView(),
           ),
-        ),
+          SizedBox(width: 16),
+          Expanded(
+            flex: 4,
+            child: _SelectionView(),
+          ),
+        ],
       ),
     );
   }

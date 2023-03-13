@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:little_heroes/domain/domain.dart';
 
 part 'party_state.dart';
 

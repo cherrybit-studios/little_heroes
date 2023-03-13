@@ -3,5 +3,8 @@
     "noHeroSelected": "No hero selected",
     "noHero": "No heros yet, try adding one.",
     "preview": "Preview",
-    "name": "Name"
+    "name": "Name",
+    "play": "Play",
+    "party": "Party",
+    "settings": "Settings"
 }
