@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart' hide Hero;
-import 'package:little_heroes/domain/domain.dart';
 import 'package:little_heroes/l10n/l10n.dart';
-import 'package:little_heroes/widgets/hero_view.dart';
 import 'package:little_heroes/widgets/widgets.dart';
 import 'package:nes_ui/nes_ui.dart';
 
@@ -26,20 +24,20 @@ class TitleView extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
               // TODO(erickzanardo): should not be hardcoded
-              const Positioned(
-                top: 96,
-                left: 36,
-                child: HeroView(
-                  zoom: 2,
-                  selectedHero: Hero(
-                    name: '',
-                    body: Body.human1,
-                    outfit: Outfit.mage,
-                    shield: null,
-                    weapon: null,
-                  ),
-                ),
-              ),
+              // const Positioned(
+              //   top: 96,
+              //   left: 36,
+              //   child: HeroView(
+              //     zoom: 2,
+              //     selectedHero: Hero(
+              //       name: '',
+              //       body: Body.human1,
+              //       outfit: Outfit.mage,
+              //       shield: null,
+              //       weapon: null,
+              //     ),
+              //   ),
+              // ),
             ],
           ),
           const SizedBox(height: 8),
