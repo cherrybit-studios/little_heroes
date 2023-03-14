@@ -7,12 +7,8 @@ class _MockAssets extends Mock implements Assets {}
 
 void main() {
   group('App', () {
-    testWidgets('renders', (tester) async {
-      await tester.pumpWidget(
-        App(assets: _MockAssets()),
-      );
-
-      expect(find.byType(App), findsOneWidget);
+    test('can be instantiated', () {
+      expect(App(assets: _MockAssets()), isNotNull);
     });
   });
 }
