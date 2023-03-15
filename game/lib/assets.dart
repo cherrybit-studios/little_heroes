@@ -44,7 +44,7 @@ class Assets {
       ),
       SpriteSheet.fromColumnsAndRows(
         image: outfitsImage,
-        rows: 7,
+        rows: 8,
         columns: 1,
       ),
       SpriteSheet.fromColumnsAndRows(
