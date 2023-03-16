@@ -24,8 +24,6 @@ class TitleCubit extends Cubit<TitleState> {
         ),
       );
     } catch (e, s) {
-      print(e);
-      print(s);
       addError(e, s);
       emit(state.copyWith(status: TitleStateStatus.failed));
     }
