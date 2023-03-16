@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart' hide Hero;
 import 'package:little_heroes/domain/domain.dart';
+import 'package:little_heroes/game_home/game_home.dart';
+import 'package:little_heroes/hero_repository/hero_repository.dart';
 import 'package:little_heroes/l10n/l10n.dart';
 import 'package:little_heroes/widgets/widgets.dart';
 import 'package:nes_ui/nes_ui.dart';
+import 'package:provider/provider.dart';
 
 class OnboardAttributesSelectionView extends StatefulWidget {
   const OnboardAttributesSelectionView({
@@ -129,8 +132,23 @@ class _OnboardAttributesSelectionViewState
           if (pointsToSpent == 0)
             NesButton(
               type: NesButtonType.primary,
-              onPressed: () {
-                //
+              onPressed: () async {
+                final navigator = Navigator.of(context);
+                final heroRepository = context.read<HeroRepository>();
+                await heroRepository.saveHero(
+                  widget.hero.copyWithAttributes(
+                    Attributes(
+                      strength: strength,
+                      dexterity: dexterity,
+                      intelligence: intelligence,
+                      stamina: stamina,
+                    ),
+                  ),
+                );
+                await navigator.pushAndRemoveUntil(
+                  GameHomePage.route(),
+                  (_) => true,
+                );
               },
               child: Text(l10n.confirm),
             ),

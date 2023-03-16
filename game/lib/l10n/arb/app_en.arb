@@ -26,5 +26,6 @@
     "attrDexterity": "DEX",
     "attrIntelligence": "INT",
     "attrStamina": "STA",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "newGame": "New"
 }

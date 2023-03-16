@@ -18,7 +18,7 @@ class DbClient {
     required String table,
     required Map<String, dynamic> data,
   }) async {
-    final box = Hive.box<Map<String, dynamic>>(table);
+    final box = await Hive.openBox<Map<dynamic, dynamic>>(table);
 
     final id = const Uuid().v4();
     await box.put(id, data);
@@ -30,22 +30,54 @@ class DbClient {
     required String table,
     required DbDocument doc,
   }) async {
-    final box = Hive.box<Map<String, dynamic>>(table);
+    final box = await Hive.openBox<Map<dynamic, dynamic>>(table);
 
     await box.put(doc.id, doc.data);
   }
 
   Future<DbDocument?> getById(String table, String id) async {
-    final box = Hive.box<Map<String, dynamic>>(table);
-    final result = box.get(id);
+    final box = await Hive.openBox<Map<dynamic, dynamic>>(table);
+    final result = box.get(id)?.cast<String, dynamic>();
 
     if (result != null) {
       return DbDocument(
         id: id,
-        data: result,
+        data: _mapMap(result),
       );
     }
 
     return null;
+  }
+
+  Future<List<DbDocument>> findBy({
+    required String table,
+    required String field,
+    required dynamic value,
+  }) async {
+    final box = await Hive.openBox<Map<dynamic, dynamic>>(table);
+
+    return box
+        .toMap()
+        .entries
+        .where(
+          (entry) => entry.value[field] == value,
+        )
+        .map(
+          (entry) => DbDocument(
+            id: entry.key as String,
+            data: _mapMap(entry.value),
+          ),
+        )
+        .toList();
+  }
+
+  Map<String, dynamic> _mapMap(Map<dynamic, dynamic> map) {
+    return map.cast<String, dynamic>().map(
+      (key, value) {
+        return value is Map
+            ? MapEntry(key, value.cast<String, dynamic>())
+            : MapEntry(key, value);
+      },
+    );
   }
 }

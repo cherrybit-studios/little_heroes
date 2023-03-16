@@ -20,4 +20,22 @@ class HeroRepository {
       );
     }
   }
+
+  Future<Hero?> getCaptain() async {
+    final query = await dbClient.findBy(
+      table: 'heroes',
+      field: 'captain',
+      value: true,
+    );
+
+    if (query.isEmpty) {
+      return null;
+    } else {
+      final doc = query.first;
+      return Hero.fromJson({
+        'id': doc.id,
+        ...doc.data,
+      });
+    }
+  }
 }

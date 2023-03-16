@@ -35,6 +35,7 @@ class _OnboardHeroViewState extends State<OnboardHeroView> {
         outfit: Outfit.villager,
         shield: null,
         weapon: null,
+        captain: true,
       );
 
       Navigator.of(context).push(
