@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart' hide Image;
+import 'package:little_heroes/mini_tiles/mini_tiles.dart';
 
 class Assets {
   Assets._(
@@ -10,12 +11,14 @@ class Assets {
     this._outfits,
     this._gears,
     this.scrollTileset,
+    this.areasTileset,
   );
 
   final SpriteSheet _bodies;
   final SpriteSheet _outfits;
   final SpriteSheet _gears;
   final Image scrollTileset;
+  final Tileset areasTileset;
 
   static Future<Assets> load() async {
     final bodiesImage = await Flame.images.load('bodies.png');
@@ -36,6 +39,8 @@ class Assets {
     final picture = recorder.endRecording();
     final scrollTileset = await picture.toImage(144, 144);
 
+    final areasTileset = await Flame.images.load('tileset.png');
+
     final assets = Assets._(
       SpriteSheet.fromColumnsAndRows(
         image: bodiesImage,
@@ -53,6 +58,10 @@ class Assets {
         columns: 6,
       ),
       scrollTileset,
+      Tileset(
+        tileSize: 16,
+        image: areasTileset,
+      ),
     );
 
     return assets;
