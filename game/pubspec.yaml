@@ -25,10 +25,12 @@ dependencies:
 dev_dependencies:
   bloc_test: ^9.1.1
   build_runner: ^2.3.3
+  checks: ^0.1.0
   flutter_test:
     sdk: flutter
   json_serializable: ^6.6.1
   mocktail: ^0.3.0
+  test: ^1.22.0
   very_good_analysis: ^4.0.0
 
 flutter:

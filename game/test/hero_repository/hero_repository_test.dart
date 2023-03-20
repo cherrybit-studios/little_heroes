@@ -1,8 +1,9 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'package:checks/checks.dart';
 import 'package:little_heroes/db_client/db_client.dart';
 import 'package:little_heroes/domain/domain.dart';
 import 'package:little_heroes/hero_repository/hero_repository.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:test/scaffolding.dart';
 
 class _MockDbClient extends Mock implements DbClient {}
 
@@ -23,10 +24,9 @@ void main() {
     });
 
     test('can be instantiated', () {
-      expect(
+      checkThat(
         HeroRepository(_MockDbClient()),
-        isNotNull,
-      );
+      ).isNotNull();
     });
 
     test('saveHero creates a new hero when is a new one', () async {
