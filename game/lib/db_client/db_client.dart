@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 
-class DbDocument {
+class DbDocument extends Equatable {
   const DbDocument({
     required this.id,
     required this.data,
@@ -9,6 +10,9 @@ class DbDocument {
 
   final String id;
   final Map<String, dynamic> data;
+
+  @override
+  List<Object> get props => [id, data];
 }
 
 class DbClient {
