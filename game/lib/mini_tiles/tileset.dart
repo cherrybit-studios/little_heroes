@@ -1,6 +1,8 @@
 import 'dart:ui';
 
+import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
+import 'package:little_heroes/mini_tiles/mini_tiles.dart';
 
 class Tileset {
   const Tileset({
@@ -34,6 +36,17 @@ class Tileset {
     return picture.toImage(
       srcSize.x.toInt(),
       srcSize.y.toInt(),
+    );
+  }
+
+  Sprite tileToSprite(Tile tile) {
+    return Sprite(
+      image,
+      srcPosition: Vector2(
+        (tile.x * tileSize).toDouble(),
+        (tile.y * tileSize).toDouble(),
+      ),
+      srcSize: Vector2.all(tileSize.toDouble()),
     );
   }
 }

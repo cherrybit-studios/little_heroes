@@ -17,14 +17,7 @@ class RepeatTiledObject extends TiledObject {
 
   @override
   Future<PositionComponent> toSpriteComponent(Tileset tileset) async {
-    final tile = Sprite(
-      tileset.image,
-      srcPosition: Vector2(
-        (repeatingTile.x * tileset.tileSize).toDouble(),
-        (repeatingTile.y * tileset.tileSize).toDouble(),
-      ),
-      srcSize: Vector2.all(tileset.tileSize.toDouble()),
-    );
+    final tile = tileset.tileToSprite(repeatingTile);
 
     final recorder = PictureRecorder();
     final canvas = Canvas(recorder);
