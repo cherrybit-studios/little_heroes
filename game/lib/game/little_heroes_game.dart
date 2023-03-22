@@ -24,10 +24,7 @@ class LittleHeroesGame extends FlameGame with HasKeyboardHandlerComponents {
           objects: [
             RepeatTiledObject(
               name: 'ground',
-              repeatingTile: const Tile(
-                x: 1,
-                y: 0,
-              ),
+              repeatingTile: const Tile(x: 1, y: 0),
               height: 16,
               width: 160,
               x: 0,
@@ -60,6 +57,30 @@ class LittleHeroesGame extends FlameGame with HasKeyboardHandlerComponents {
                   height: 32,
                   srcPosition: Vector2(0, 48),
                   srcSize: Vector2.all(48),
+                ),
+                SingleTileObject(
+                  name: 'door',
+                  x: 32,
+                  y: 32,
+                  width: 16,
+                  height: 16,
+                  tile: const Tile(x: 6, y: 3),
+                ),
+                SingleTileObject(
+                  name: 'window1',
+                  x: 16,
+                  y: 16,
+                  width: 16,
+                  height: 16,
+                  tile: const Tile(x: 7, y: 3),
+                ),
+                SingleTileObject(
+                  name: 'window2',
+                  x: 48,
+                  y: 16,
+                  width: 16,
+                  height: 16,
+                  tile: const Tile(x: 7, y: 3),
                 ),
               ],
             ),
