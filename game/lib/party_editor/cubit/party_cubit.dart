@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:little_heroes/domain/domain.dart';
@@ -13,7 +15,7 @@ class PartyCubit extends Cubit<PartyState> {
           ),
         );
 
-  //final _rng = Random();
+  final _rng = Random();
 
   void _updateSelectedHero(Hero Function(Hero) transformer) {
     final selectedHero = state.heroes[state.selected!];
@@ -80,29 +82,28 @@ class PartyCubit extends Cubit<PartyState> {
   }
 
   void newHero() {
-    // TODO(erickzanardo): This will be different
-    //final name = 'Hero #${state.heroes.length + 1}';
-    //final body = Body.values[_rng.nextInt(Body.values.length)];
-    //final outfit = Outfit.values[_rng.nextInt(Outfit.values.length)];
+    final name = 'Hero #${state.heroes.length + 1}';
+    final body = Body.values[_rng.nextInt(Body.values.length)];
+    final outfit = Outfit.values[_rng.nextInt(Outfit.values.length)];
 
-    //final hero = Hero(
-    //  name: name,
-    //  body: body,
-    //  outfit: outfit,
-    //  shield: null,
-    //  weapon: null,
-    //);
+    final hero = Hero(
+      name: name,
+      body: body,
+      outfit: outfit,
+      shield: null,
+      weapon: null,
+    );
 
-    //final heroes = [
-    //  ...state.heroes,
-    //  hero,
-    //];
+    final heroes = [
+      ...state.heroes,
+      hero,
+    ];
 
-    //emit(
-    //  PartyState(
-    //    heroes: heroes,
-    //    selected: heroes.length - 1,
-    //  ),
-    //);
+    emit(
+      PartyState(
+        heroes: heroes,
+        selected: heroes.length - 1,
+      ),
+    );
   }
 }

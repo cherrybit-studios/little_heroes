@@ -13,9 +13,9 @@ class PartyEditorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GameScaffold(
+    return const GameScaffold(
       body: Row(
-        children: const [
+        children: [
           Expanded(
             flex: 6,
             child: _CharacterView(),
@@ -74,11 +74,6 @@ class _CharacterViewState extends State<_CharacterView> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        TextFormField(
-                          decoration: InputDecoration(label: Text(l10n.name)),
-                          controller: controller,
-                          onChanged: cubit.updateSelectedHeroName,
-                        ),
                         const SizedBox(height: 48),
                         NesIterableOptions<Body>(
                           values: Body.values,
