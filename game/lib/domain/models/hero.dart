@@ -108,6 +108,5 @@ class Hero extends Equatable {
   }
 
   @override
-  List<Object?> get props =>
-      [ name, body, outfit, weapon, outfit, shield];
+  List<Object?> get props => [name, body, outfit, weapon, outfit, shield];
 }
