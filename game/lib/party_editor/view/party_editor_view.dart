@@ -1,3 +1,7 @@
+import 'dart:ui' as ui;
+
+import 'package:cross_file/cross_file.dart';
+import 'package:flame/components.dart';
 import 'package:flame/widgets.dart';
 import 'package:flutter/material.dart' hide Hero;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -342,10 +346,78 @@ class _SelectionView extends StatelessWidget {
                 },
                 child: NesIcon(iconData: NesIcons.instance.add),
               ),
+              const SizedBox(width: 16),
+              if (state.heroes.isNotEmpty)
+                NesPressable(
+                  onPress: () async {
+                    final image = await drawHeroesSpritesheet(
+                      state.heroes,
+                      context.read<Assets>(),
+                    );
+                    final byteData = await image.toByteData(
+                      format: ui.ImageByteFormat.png,
+                    );
+                    final file = XFile.fromData(
+                      byteData!.buffer.asUint8List(),
+                      mimeType: 'image/png',
+                      name: 'little_heroes.png',
+                    );
+                    await file.saveTo('little_heroes.png');
+                  },
+                  child: NesIcon(iconData: NesIcons.instance.download),
+                ),
             ],
           ),
         ],
       ),
     );
   }
+}
+
+Future<ui.Image> drawHeroesSpritesheet(List<Hero> heros, Assets assets) async {
+  const size = 16.0;
+
+  final recorder = ui.PictureRecorder();
+  final canvas = Canvas(recorder);
+
+  for (var i = 0; i < heros.length; i++) {
+    final hero = heros[i];
+    final image = await drawHeroSprite(hero, assets);
+    canvas.drawImage(image, Offset(size * i, 0), Paint());
+  }
+  final picture = recorder.endRecording();
+  final image = await picture.toImage(
+    (size * heros.length).toInt(),
+    size.toInt(),
+  );
+
+  return image;
+}
+
+Future<ui.Image> drawHeroSprite(Hero hero, Assets assets) async {
+  const size = 16;
+  final recorder = ui.PictureRecorder();
+  final canvas = Canvas(recorder);
+
+  final body = assets.getBody(hero.body.index);
+  final outfit = assets.getOutfit(hero.outfit.index);
+
+  body.render(canvas);
+  outfit.render(canvas);
+
+  if (hero.weapon != null) {
+    assets
+        .getWeapon(hero.weapon!.index)
+        .render(canvas, position: Vector2(size * .4, 0));
+  }
+
+  if (hero.shield != null) {
+    assets
+        .getShield(hero.shield!.index)
+        .render(canvas, position: Vector2(-(size * .25), 0));
+  }
+
+  final picture = recorder.endRecording();
+  final image = await picture.toImage(size, size);
+  return image;
 }
