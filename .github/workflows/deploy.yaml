@@ -1,0 +1,30 @@
+name: Deploy
+
+on: workflow_dispatch
+
+env:
+  ITCH_USERNAME: cherrybit
+  ITCH_GAME_ID: little-heroes
+
+jobs:
+  deploy:
+    name: Upload to Itch
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+
+    runs-on: ubuntu-latest
+    name: Deploy - Itch.io
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: subosito/flutter-action@v2
+
+      - run: flutter build web --web-renderer=canvaskit
+      - uses: KikimoraGames/itch-publish@v0.0.3
+        with:
+          butlerApiKey: ${{secrets.ITCH_KEY}}
+          gameData: ./build/web
+          itchUsername: ${{env.ITCH_USERNAME}}
+          itchGameId: ${{ env.ITCH_GAME_ID }}
+          buildChannel: webgl
