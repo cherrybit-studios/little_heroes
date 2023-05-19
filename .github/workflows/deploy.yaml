@@ -16,11 +16,11 @@ jobs:
 
       - uses: subosito/flutter-action@v2
 
-      - run: flutter build web --web-renderer=canvaskit
+      - run: cd game && flutter build web --web-renderer=canvaskit
       - uses: KikimoraGames/itch-publish@v0.0.3
         with:
           butlerApiKey: ${{secrets.ITCH_KEY}}
-          gameData: ./build/web
+          gameData: ./game/build/web
           itchUsername: ${{env.ITCH_USERNAME}}
           itchGameId: ${{ env.ITCH_GAME_ID }}
           buildChannel: webgl
