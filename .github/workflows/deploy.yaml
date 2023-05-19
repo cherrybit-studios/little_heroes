@@ -10,11 +10,7 @@ jobs:
   deploy:
     name: Upload to Itch
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: true
 
-    runs-on: ubuntu-latest
-    name: Deploy - Itch.io
     steps:
       - uses: actions/checkout@v2
 
