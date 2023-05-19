@@ -374,21 +374,20 @@ class _SelectionView extends StatelessWidget {
   }
 }
 
+const spriteSize = Size(24, 16);
 Future<ui.Image> drawHeroesSpritesheet(List<Hero> heros, Assets assets) async {
-  const size = 16.0;
-
   final recorder = ui.PictureRecorder();
   final canvas = Canvas(recorder);
 
   for (var i = 0; i < heros.length; i++) {
     final hero = heros[i];
     final image = await drawHeroSprite(hero, assets);
-    canvas.drawImage(image, Offset(size * i, 0), Paint());
+    canvas.drawImage(image, Offset(spriteSize.width * i, 0), Paint());
   }
   final picture = recorder.endRecording();
   final image = await picture.toImage(
-    (size * heros.length).toInt(),
-    size.toInt(),
+    (spriteSize.width * heros.length).toInt(),
+    spriteSize.height.toInt(),
   );
 
   return image;
@@ -418,6 +417,9 @@ Future<ui.Image> drawHeroSprite(Hero hero, Assets assets) async {
   }
 
   final picture = recorder.endRecording();
-  final image = await picture.toImage(size, size);
+  final image = await picture.toImage(
+    spriteSize.width.toInt(),
+    spriteSize.height.toInt(),
+  );
   return image;
 }
